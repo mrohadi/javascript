@@ -104,11 +104,26 @@ class FilterableProductTable extends React.Component {
 
   render() {
     let result = [];
-    if (this.state.isStockReady) {
-      PRODUCTS.forEach((product) => {
+    PRODUCTS.forEach((product) => {
+      if (this.state.isStockReady && this.state.filterText !== "") {
+        if (
+          product.stocked &&
+          product.name
+            .toUpperCase()
+            .includes(this.state.filterText.toUpperCase())
+        )
+          result.push(product);
+      } else if (this.state.isStockReady) {
         if (product.stocked) result.push(product);
-      });
-    } else result = PRODUCTS;
+      } else if (this.state.filterText !== "") {
+        if (
+          product.name
+            .toUpperCase()
+            .includes(this.state.filterText.toUpperCase())
+        )
+          result.push(product);
+      } else result = PRODUCTS;
+    });
 
     return (
       <div style={{ width: "250px" }}>
