@@ -1,5 +1,12 @@
+import Header from "../../components/Header";
+
 const Dasboard = () => {
-  return <div>Dasboard</div>
+  return (
+    <Header
+      title="DASHBOARD"
+      subtitle="Welcome to your dashboard"
+    />
+  )
 };
 
 export default Dasboard;
